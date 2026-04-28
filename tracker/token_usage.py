@@ -1,7 +1,5 @@
 from typing import Any
 
-from yaml import Token
-
 from tracker.schemas import TokenUsage
 
 TokenLedger = list[TokenUsage | None]
@@ -40,7 +38,6 @@ def get_total_token_usage(responses: list[Any]) -> TokenUsage:
 
 def sum_token_usages(usages: TokenLedger) -> TokenUsage:
     total = TokenUsage()
-    has_usage = False
 
     for usage in usages:
         if usage is None:
