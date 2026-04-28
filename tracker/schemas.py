@@ -11,8 +11,6 @@ class Source(BaseModel):
     url: str
     title: str
     published_at: datetime
-    topics: list[str]
-    source: str
 
 
 class Article(Source):
@@ -23,8 +21,13 @@ class Article(Source):
 class Index(BaseModel):
     version: str
     generated_at: str
-    articles: list[Source]
+    articles: list[IndexArticles]
     topic_index: dict[str, list[str]]
+
+
+class IndexArticles(Source):
+    topics: list[str]
+    source: str
 
 
 class DigestItem(BaseModel):

@@ -1,6 +1,10 @@
 from typing import Any
 
+from yaml import Token
+
 from tracker.schemas import TokenUsage
+
+TokenLedger = list[TokenUsage | None]
 
 _PRICING_PER_1M_TOKENS: dict[str, tuple[float, float]] = {
     # model: (input_usd_per_1m, output_usd_per_1m)
@@ -29,12 +33,12 @@ def get_token_usage(response: Any) -> TokenUsage:
     )
 
 
-def get_total_token_usage(responses: list[Any]) -> TokenUsage | None:
+def get_total_token_usage(responses: list[Any]) -> TokenUsage:
     usages = [get_token_usage(response) for response in responses]
-    return sum_token_usages(usages)
+    return sum_token_usages(TokenLedger(usages))
 
 
-def sum_token_usages(usages: list[TokenUsage]) -> TokenUsage | None:
+def sum_token_usages(usages: TokenLedger) -> TokenUsage:
     total = TokenUsage()
     has_usage = False
 
@@ -42,14 +46,10 @@ def sum_token_usages(usages: list[TokenUsage]) -> TokenUsage | None:
         if usage is None:
             continue
 
-        has_usage = True
         total.input_tokens += usage.input_tokens
         total.output_tokens += usage.output_tokens
         total.total_tokens += usage.total_tokens
         total.estimated_cost_usd += usage.estimated_cost_usd
-
-    if not has_usage:
-        return None
 
     total.estimated_cost_usd = round(total.estimated_cost_usd, 6)
 

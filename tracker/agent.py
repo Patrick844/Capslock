@@ -38,6 +38,7 @@ from tracker.schemas import (
     SearchNews,
     Source,
     SummarizerResponse,
+    TokenUsage,
 )
 from tracker.token_usage import get_token_usage, sum_token_usages
 from tracker.tool_description import (
@@ -48,8 +49,8 @@ from tracker.tool_description import (
 )
 from tracker.tools import cluster_articles, fetch_article, search_news, summarize_content
 
-MAX_ITERATIONS = 6           # cap on candidate articles processed per run
-MAX_AGENT_ATTEMPTS = 6       # total agent retries on unhandled failure
+MAX_ITERATIONS = 6  # cap on candidate articles processed per run
+MAX_AGENT_ATTEMPTS = 6  # total agent retries on unhandled failure
 
 client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 
@@ -67,12 +68,13 @@ SYSTEM_PROMPT = (
     "Do not invent article data. Only answer using tool results."
 )
 
-TokenLedger = list[dict[str, int] | None]
-
 
 # ---------------------------------------------------------------------------
 # Low-level helpers
 # ---------------------------------------------------------------------------
+
+TokenLedger = list[TokenUsage | None]
+
 
 async def _call_llm(user_input: str) -> Response:
     """Single LLM call with all tools registered."""
@@ -88,15 +90,14 @@ async def _call_llm(user_input: str) -> Response:
 def _extract_tool_calls(response: Response, tool_name: str) -> list:
     """Filter the Responses API output to function_call items for *tool_name*."""
     return [
-        item
-        for item in response.output
-        if item.type == "function_call" and item.name == tool_name
+        item for item in response.output if item.type == "function_call" and item.name == tool_name
     ]
 
 
 # ---------------------------------------------------------------------------
 # Phase 1 — search
 # ---------------------------------------------------------------------------
+
 
 async def _search(topic: str, since: date, max_items: int, usage: TokenLedger) -> list[Source]:
     response = await _call_llm(f"topic: {topic}\nsince: {since}\nmax_items: {max_items}")
@@ -112,6 +113,7 @@ async def _search(topic: str, since: date, max_items: int, usage: TokenLedger) -
 # ---------------------------------------------------------------------------
 # Phase 2 — fetch one article via the LLM
 # ---------------------------------------------------------------------------
+
 
 async def _fetch(article_id: str, usage: TokenLedger) -> Article | None:
     try:
@@ -141,6 +143,7 @@ async def _fetch(article_id: str, usage: TokenLedger) -> Article | None:
 # Phase 3 — summarize one article via the LLM
 # ---------------------------------------------------------------------------
 
+
 async def _summarize(article: Article, topic: str, usage: TokenLedger) -> SummarizerResponse | None:
     try:
         response = await _call_llm(f"summarize the content: {article.body}")
@@ -168,6 +171,7 @@ async def _summarize(article: Article, topic: str, usage: TokenLedger) -> Summar
 # ---------------------------------------------------------------------------
 # Phase 4 — cluster (one LLM call, best-effort)
 # ---------------------------------------------------------------------------
+
 
 async def _cluster(fetched: dict[str, Article], usage: TokenLedger) -> list[list[str]]:
     if len(fetched) < 2:
@@ -202,6 +206,7 @@ async def _cluster(fetched: dict[str, Article], usage: TokenLedger) -> list[list
 # Pure post-processing
 # ---------------------------------------------------------------------------
 
+
 def _build_digest_item(
     article: Article, summary: SummarizerResponse, source: Source
 ) -> DigestItem | None:
@@ -221,9 +226,7 @@ def _build_digest_item(
         return None
 
 
-def _merge_items_by_cluster(
-    items: list[DigestItem], clusters: list[list[str]]
-) -> list[DigestItem]:
+def _merge_items_by_cluster(items: list[DigestItem], clusters: list[list[str]]) -> list[DigestItem]:
     """Collapse items that belong to the same cluster into one multi-source item."""
     if not clusters:
         return items
@@ -257,6 +260,7 @@ def _merge_items_by_cluster(
 # ---------------------------------------------------------------------------
 # Public entry + orchestrator
 # ---------------------------------------------------------------------------
+
 
 async def run_digest(request: DigestRequest) -> DigestResponse:
     """Run the agent with up to MAX_AGENT_ATTEMPTS retries."""
