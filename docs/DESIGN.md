@@ -37,4 +37,3 @@ Citation fidelity: every `Source` field comes from `search_index.json` via `_loo
 - **Iteration cap is global, not per-phase.** A pathological run with many candidates can consume the budget on fetches before reaching cluster. In practice fixtures stay under the cap.
 - **Cluster representative is `cluster[0]`.** Better would be the article with highest relevance or the most authoritative source; skipped for simplicity.
 - **No fallback heuristic for clustering.** If the LLM mis-clusters (misses a 4th outlet of the GPT-5 story), there's no second-pass title-similarity check.
-- **No tests.** The pure functions (`_build_digest_item`, `_merge_items_by_cluster`, `_filter_article_by_date`) are designed to be unit-testable but I haven't written tests yet — that's the next thing.
