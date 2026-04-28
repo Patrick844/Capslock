@@ -54,7 +54,7 @@ SUMMARIZE_ARTICLE_TOOL = {
     "name": "summarize_article",
     "description": (
         "Summarize article content for a given topic. "
-        "Use this after the article content has been fetched. "
+        "Always summarize content based on topic"
         "The tool receives the article content and the topic, then returns a concise summary "
         "focused on the parts of the content that are relevant to that topic."
     ),

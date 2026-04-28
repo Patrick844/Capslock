@@ -101,6 +101,61 @@ http://localhost:8000
 docker compose down
 ```
 
+## Tests
+
+This project uses `pytest` for testing and `pytest-cov` for coverage reports.
+
+### Install test dependencies
+
+```bash
+uv add --dev pytest pytest-cov pytest-asyncio
+```
+
+### Run tests
+
+```bash
+uv run pytest
+```
+
+### Run tests with coverage
+
+```bash
+uv run pytest --cov=tracker --cov-report=term-missing
+```
+
+### Generate an HTML coverage report
+
+```bash
+uv run pytest --cov=tracker --cov-report=term-missing --cov-report=html
+```
+
+Then open the report:
+
+```bash
+open htmlcov/index.html
+```
+
+### What is tested
+
+The test suite covers:
+
+- Local fixture search logic
+- Article HTML parsing
+- Metadata extraction
+- Token usage aggregation
+- Agent helper functions
+- Async summarization and clustering logic using mocked LLM responses
+
+Tests do **not** call the real OpenAI API. LLM responses are mocked to keep tests fast, deterministic, and safe to run locally or in CI.
+
+### Type checking
+
+Run Pyright with:
+
+```bash
+uv run pyright
+```
+
 Prints a pass/fail summary across the gold cases in `evals/gold.json`.
 
 ## Notes from the Candidate
