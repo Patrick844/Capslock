@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Industry Digest</title>
+    <link>https://frameworkdigest.dev/feed</link>
+    <description>Weekly industry analysis and roundups across the AI ecosystem</description>
+    <lastBuildDate>Wed, 15 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Industry analysis: entity-resolution trends in 2026</title>
+      <link>https://frameworkdigest.dev/articles/industry-analysis-entity-resolution-trends-in-2026</link>
+      <guid isPermaLink="true">https://frameworkdigest.dev/articles/industry-analysis-entity-resolution-trends-in-2026</guid>
+      <pubDate>Wed, 08 Apr 2026 09:00:00 GMT</pubDate>
+      <description>An industry deep-dive into entity-resolution techniques being adopted across agent frameworks in 2026.</description>
+      <category>agent frameworks</category>
+    </item>
+    <item>
+      <title>Voice agent framework comparison 2026</title>
+      <link>https://voiceaiweekly.com/articles/voice-agent-framework-comparison-2026</link>
+      <guid isPermaLink="true">https://voiceaiweekly.com/articles/voice-agent-framework-comparison-2026</guid>
+      <pubDate>Sun, 05 Apr 2026 09:00:00 GMT</pubDate>
+      <description>A side-by-side comparison of the leading voice agent frameworks across latency, cost, and developer ergonomics.</description>
+      <category>voice ai</category>
+    </item>
+    <item>
+      <title>LangGraph 2.0 adds stateful agent primitives</title>
+      <link>https://frameworkdigest.dev/articles/langgraph-2-0-adds-stateful-agent-primitives</link>
+      <guid isPermaLink="true">https://frameworkdigest.dev/articles/langgraph-2-0-adds-stateful-agent-primitives</guid>
+      <pubDate>Sun, 22 Mar 2026 09:00:00 GMT</pubDate>
+      <description>LangGraph 2.0 introduces stateful agent primitives aimed at long-running agent workflows.</description>
+      <category>agent frameworks</category>
+    </item>
+    <item>
+      <title>PydanticAI framework debuts</title>
+      <link>https://frameworkdigest.dev/articles/pydanticai-framework-debuts</link>
+      <guid isPermaLink="true">https://frameworkdigest.dev/articles/pydanticai-framework-debuts</guid>
+      <pubDate>Fri, 03 Apr 2026 09:00:00 GMT</pubDate>
+      <description>PydanticAI launched as a new typed-first agent framework from the Pydantic team.</description>
+      <category>agent frameworks</category>
+    </item>
+    <item>
+      <title>Google Gemini 3 reaches general availability</title>
+      <link>https://mlnewsletter.com/articles/google-gemini-3-reaches-general-availability</link>
+      <guid isPermaLink="true">https://mlnewsletter.com/articles/google-gemini-3-reaches-general-availability</guid>
+      <pubDate>Tue, 07 Apr 2026 09:00:00 GMT</pubDate>
+      <description>Google confirmed Gemini 3 has reached general availability with expanded region coverage.</description>
+      <category>llm apis</category>
+    </item>
+    <item>
+      <title>Adobe Firefly 4 launches across the Creative Cloud</title>
+      <link>https://imagegennews.io/articles/adobe-firefly-4-launches-across-the-creative-cloud</link>
+      <guid isPermaLink="true">https://imagegennews.io/articles/adobe-firefly-4-launches-across-the-creative-cloud</guid>
+      <pubDate>Wed, 01 Apr 2026 09:00:00 GMT</pubDate>
+      <description>Adobe rolled out Firefly 4 across the Creative Cloud suite with tighter integration into existing workflows.</description>
+      <category>image generation</category>
+    </item>
+    <item>
+      <title>Early thoughts on Anthropic's MCP draft</title>
+      <link>https://aidaily.io/articles/early-thoughts-on-anthropics-mcp-draft</link>
+      <guid isPermaLink="true">https://aidaily.io/articles/early-thoughts-on-anthropics-mcp-draft</guid>
+      <pubDate>Fri, 20 Feb 2026 09:00:00 GMT</pubDate>
+      <description>Early commentary on Anthropic's Model Context Protocol draft and what it implies for tool-augmented agents.</description>
+      <category>mcp</category>
+    </item>
+  </channel>
+</rss>

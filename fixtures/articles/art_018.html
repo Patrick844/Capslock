@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="published" content="2026-03-22T14:00:00Z">
+  <meta name="source" content="frameworkdigest.dev">
+  <meta name="tags" content="agent-frameworks,langgraph,langchain,stateful">
+  <title>LangGraph 2.0 adds stateful agent primitives</title>
+</head>
+<body>
+  <article>
+    <h1>LangGraph 2.0 adds stateful agent primitives</h1>
+    <p class="byline">Published March 22, 2026 on frameworkdigest.dev</p>
+    <p>The LangChain team today released LangGraph 2.0, a major-version bump to its agent orchestration framework, with the headline addition of first-class stateful primitives that make it significantly easier to build long-running agents that remember and reason over their own history across sessions. The 2.0 release has been in public preview since the start of the year, and today's cut promotes it to stable with firm API guarantees.</p>
+    <p>The core new concept in LangGraph 2.0 is the persistent checkpoint, which lets a graph be paused, serialized, inspected, and resumed across process boundaries without losing its reasoning context or any attached memory. Checkpoints integrate cleanly with the framework's existing message-passing graph model, and can be stored in any backend that implements a small save-and-restore interface, including Postgres, Redis, and a new bundled SQLite-based local store intended for development. Alongside checkpoints, the release introduces a more ergonomic API for defining human-in-the-loop interrupts, which has been one of the more common pain points in production LangGraph deployments.</p>
+    <p>Migration from LangGraph 1.x is mostly mechanical, though a handful of lifecycle hooks have been renamed and a couple of deprecated classes have been removed outright. The LangChain team has published a migration guide and a small codemod that handles the automatable portion of the upgrade. Performance on typical agent workloads is roughly on par with 1.x, with the team noting that some of the new state-management features add a small serialization overhead that should be invisible in practice except at very high request rates. LangGraph 2.0 is available today on PyPI and npm under the usual LangChain release channels.</p>
+    <p>Read more: <a href="https://frameworkdigest.dev/articles/langgraph-2-stateful-primitives">source</a></p>
+  </article>
+</body>
+</html>

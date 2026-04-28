@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="published" content="2026-01-20T10:45:00Z">
+  <meta name="source" content="frameworkdigest.dev">
+  <meta name="tags" content="agent-frameworks,autogen,microsoft,release-notes">
+  <title>AutoGen 0.9 release notes</title>
+</head>
+<body>
+  <article>
+    <h1>AutoGen 0.9 release notes</h1>
+    <p class="byline">Published January 20, 2026 on frameworkdigest.dev</p>
+    <p>Microsoft Research has tagged AutoGen 0.9, the last planned minor release before the framework's long-anticipated 1.0 cut later this year. The release focuses on tightening the multi-agent conversation APIs that are AutoGen's calling card, addressing a set of long-standing ergonomic issues and cleaning up behaviors that had been inconsistent between the assistant-agent and user-proxy-agent roles.</p>
+    <p>Among the functional changes, 0.9 introduces a more rigorous group-chat manager with explicit turn-taking controls and the ability to set per-agent speaking budgets, which the team says should curb the runaway cross-talk patterns that have tripped up production deployments. The release also improves the default tool-use handling to align with OpenAI's current tool-calling schema, removes a handful of deprecated keyword arguments that dated back to the 0.2 era, and introduces a new streaming interface for agent messages that surfaces partial tokens as they arrive from the underlying LLM rather than buffering whole messages.</p>
+    <p>On the stability front, 0.9 closes out a sizable backlog of issues around memory leaks in long-running conversation loops and several edge cases where the orchestrator would deadlock on agents that returned empty messages. The Microsoft team has also begun formalizing the roadmap to 1.0, with a public RFC document outlining which APIs are expected to be stable at that cut and which are explicitly slated for further iteration. Users on 0.8 should find the upgrade mostly painless, though the release notes flag a few behavioral changes that may require small test updates for teams running heavy integration suites against the framework.</p>
+    <p>Read more: <a href="https://frameworkdigest.dev/articles/autogen-0-9-release-notes">source</a></p>
+  </article>
+</body>
+</html>

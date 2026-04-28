@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="published" content="2026-03-15T09:00:00Z">
+  <meta name="source" content="techpress.dev">
+  <meta name="tags" content="voice-ai,vapi,api,breaking-changes">
+  <title>VAPI v2 API launches with breaking changes</title>
+</head>
+<body>
+  <article>
+    <h1>VAPI v2 API launches with breaking changes</h1>
+    <p class="byline">Published March 15, 2026 on techpress.dev</p>
+    <p>Voice AI infrastructure provider VAPI today released version 2 of its flagship API, introducing a long-awaited redesign that consolidates call management, function-calling, and realtime streaming under a single unified interface. The release is a hard break from the v1 surface that powered thousands of production voice agents since early 2024, and the company is giving teams a six-month migration window before v1 endpoints are decommissioned.</p>
+    <p>The most visible change is the move from the legacy <code>/call/start</code> endpoint to a new <code>/v2/sessions</code> resource, which returns a persistent session object that can be resumed across transport reconnects. VAPI's CTO described the shift as an attempt to match the mental model developers already use for LLM chat sessions. Function-calling semantics have also been rewritten to align with the OpenAI tool-use spec, meaning any custom handlers written for v1 will need to be ported. Latency targets for the new transport layer are being advertised at under 300 milliseconds round-trip for WebRTC connections in North American regions.</p>
+    <p>Early adopters, including several enterprise customer-support deployments, said the migration effort was non-trivial but welcomed the cleaner model. VAPI has published a migration guide and a compatibility shim that translates v1 requests to v2 at the edge, though the shim carries a small performance penalty. The company also announced a new usage-based pricing tier for high-volume accounts, with bulk discounts kicking in above one million minutes per month. A v2.1 follow-up with native support for multi-speaker diarization is expected in early summer.</p>
+    <p>Read more: <a href="https://techpress.dev/articles/vapi-v2-launch">source</a></p>
+  </article>
+</body>
+</html>

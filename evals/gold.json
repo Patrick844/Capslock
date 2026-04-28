@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "cases": [
+    {
+      "name": "voice_ai_march_onwards",
+      "request": {"topic": "Voice AI", "since": "2026-03-01", "max_items": 5},
+      "must_include_article_ids": ["art_001", "art_002", "art_013"],
+      "must_exclude_article_ids": ["art_003"],
+      "must_collapse_cluster": [],
+      "notes": "Expect Voice AI stories since March; art_003 is stale and must be filtered."
+    },
+    {
+      "name": "llm_apis_march_onwards",
+      "request": {"topic": "LLM APIs", "since": "2026-03-01", "max_items": 5},
+      "must_include_article_ids": ["art_005", "art_006"],
+      "must_exclude_article_ids": ["art_004"],
+      "must_collapse_cluster": ["art_014", "art_015", "art_016"],
+      "notes": "LLM APIs stories since March; art_004 stale; GPT-5 pricing trio must deduplicate to one item with 3 sources."
+    },
+    {
+      "name": "image_generation_since_march",
+      "request": {"topic": "Image Generation", "since": "2026-03-01", "max_items": 5},
+      "must_include_article_ids": ["art_008"],
+      "must_exclude_article_ids": [],
+      "must_collapse_cluster": [],
+      "notes": "Image Gen stories since March; art_009 has a broken link and art_010 has a contradictory title/body — a strong agent should either flag or de-rank them."
+    },
+    {
+      "name": "agent_frameworks_since_march",
+      "request": {"topic": "Agent Frameworks", "since": "2026-03-01", "max_items": 5},
+      "must_include_article_ids": ["art_018"],
+      "must_exclude_article_ids": ["art_019"],
+      "must_collapse_cluster": [],
+      "notes": "Agent Frameworks stories since March; art_019 is stale; art_020 has broken link."
+    }
+  ]
+}

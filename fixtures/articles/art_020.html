@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="published" content="2026-04-03T15:20:00Z">
+  <meta name="source" content="frameworkdigest.dev">
+  <meta name="tags" content="agent-frameworks,pydantic,pydantic-ai,python">
+  <title>PydanticAI framework debuts</title>
+</head>
+<body>
+  <article>
+    <h1>PydanticAI framework debuts</h1>
+    <p class="byline">Published April 3, 2026 on frameworkdigest.dev</p>
+    <p>The team behind Pydantic today released PydanticAI, a new agent framework that brings the type-safety ergonomics of Pydantic's validation library to the messier world of LLM-driven applications. The framework, which has been incubating as an internal tool for the better part of a year, is pitched as an answer to the common complaint that existing Python agent libraries tend to smuggle large amounts of untyped dict-shaped data through their core abstractions.</p>
+    <p>At the center of PydanticAI is a strongly typed agent definition in which the system prompt, tool schemas, and structured output shape are all expressed through the familiar Pydantic model syntax. The framework hooks into Pydantic's existing validation layer to enforce that tool arguments, LLM responses, and any structured outputs actually conform to their declared schemas at runtime, producing clear error traces when they do not. Tool definitions use Python decorators that capture function signatures and docstrings into structured tool schemas without a separate metadata layer, and the framework natively supports streaming, async execution, and the kind of graph-shaped multi-agent flows that have become table stakes since LangGraph popularized them.</p>
+    <p>Model support is intentionally broad at launch: OpenAI, Anthropic, Google, Groq, Mistral, and Ollama are all first-class, with a pluggable client interface for additional backends. The 0.1 release is being distributed under an MIT license and is available on PyPI today. The team was clear that this is an initial public release and that the API surface should be treated as evolving through the coming months, though the core agent model has already seen internal battle testing at several production deployments that the project's maintainers have been collaborating with.</p>
+    <p>Read more: <a href="https://frameworkdigest.dev/404-not-found">source</a></p>
+  </article>
+</body>
+</html>

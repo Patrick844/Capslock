@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="published" content="2026-02-20T15:10:00Z">
+  <meta name="source" content="aidaily.io">
+  <meta name="tags" content="mcp,anthropic,protocol,draft">
+  <title>Early thoughts on Anthropic's MCP draft</title>
+</head>
+<body>
+  <article>
+    <h1>Early thoughts on Anthropic's MCP draft</h1>
+    <p class="byline">Published February 20, 2026 on aidaily.io</p>
+    <p>Anthropic's Model Context Protocol, shortened to MCP, has been sitting in the open for a few months now, and the first real wave of third-party implementation attempts has given the ecosystem something to argue about. The draft proposes a standard way for an LLM application to connect to external tools, data sources, and resources through a uniform JSON-RPC surface, and early reactions from framework authors and independent developers have been cautiously positive, if not without friction.</p>
+    <p>The cleanest part of the design, several reviewers said, is the separation between the host application, the client connecting to a specific server, and the server itself, which exposes a fixed set of capability categories such as resources, tools, and prompts. That structure is familiar to anyone who has worked with LSP, and the analogy to Microsoft's Language Server Protocol is one that Anthropic itself leans on in the documentation. Framework authors from LangChain, LlamaIndex, and a couple of smaller agent libraries have all published their initial MCP adapters, though most note that a few capability categories are still sparsely implemented in practice.</p>
+    <p>The friction points are mostly around ecosystem maturity rather than the protocol itself. Authentication, the story for long-running connections, and the exact shape of resource-change notifications are areas where the draft leaves meaningful room for interpretation, and the reference server implementations do not yet agree with each other on every detail. Anthropic has signaled that refinements are coming and is actively soliciting feedback in the MCP GitHub repository, with a more stable revision targeted for later in the spring. For now, anyone building seriously on MCP should expect to track the spec closely and be willing to revise their code as the edges solidify.</p>
+    <p>Read more: <a href="https://aidaily.io/articles/mcp-draft-early-thoughts">source</a></p>
+  </article>
+</body>
+</html>

@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    container_name: capslock-tracker-api
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: 1
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai}
+    # Mount fixtures read-only so we can update them without rebuilding.
+    volumes:
+      - ./fixtures:/app/fixtures:ro
+    restart: unless-stopped

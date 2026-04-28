@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="published" content="2026-03-20T14:30:00Z">
+  <meta name="source" content="voiceaiweekly.com">
+  <meta name="tags" content="voice-ai,elevenlabs,latency,conversational">
+  <title>ElevenLabs Conversational v3 ships with sub-200ms latency</title>
+</head>
+<body>
+  <article>
+    <h1>ElevenLabs Conversational v3 ships with sub-200ms latency</h1>
+    <p class="byline">Published March 20, 2026 on voiceaiweekly.com</p>
+    <p>ElevenLabs today pushed its Conversational AI platform to version 3, with the headline claim that end-to-end response latency now sits below 200 milliseconds for most supported languages. The company framed the release as the inflection point at which synthesized agents begin to feel indistinguishable from a human pause-and-reply cadence, at least in tightly scoped domains such as restaurant reservations, scheduling, and tier-one customer support triage.</p>
+    <p>Under the hood, v3 consolidates the previously separate ASR, LLM, and TTS pipelines into a co-located inference graph that shares hidden state across components. According to the engineering team, this removes several serialization boundaries that were responsible for a meaningful slice of v2's roughly 450ms round-trip time. The new architecture also supports what ElevenLabs calls "interruptible streaming," where the model can cancel in-progress speech within tens of milliseconds when the caller begins speaking, rather than having to finish the current sentence.</p>
+    <p>The release extends multilingual coverage to 41 languages, with particular attention paid to Japanese, Korean, and several Indian languages that had lagged in v2's voice quality benchmarks. Pricing remains consistent with v2 on a per-minute basis, though enterprise tiers now include a guaranteed 99.9% availability SLA and dedicated-capacity options for deployments above 10,000 concurrent calls. A handful of launch partners, including a large European telco and two U.S. healthcare scheduling platforms, are already running v3 in production, and ElevenLabs says general availability begins today for all existing Conversational customers.</p>
+    <p>Read more: <a href="https://voiceaiweekly.com/articles/elevenlabs-conversational-v3">source</a></p>
+  </article>
+</body>
+</html>

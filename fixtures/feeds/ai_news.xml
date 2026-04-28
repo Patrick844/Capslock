@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>AI News Daily</title>
+    <link>https://aidaily.io/feed</link>
+    <description>Daily AI industry updates</description>
+    <lastBuildDate>Wed, 15 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>VAPI v2 API launches with breaking changes</title>
+      <link>https://techpress.dev/articles/vapi-v2-api-launches-with-breaking-changes</link>
+      <guid isPermaLink="true">https://techpress.dev/articles/vapi-v2-api-launches-with-breaking-changes</guid>
+      <pubDate>Sun, 15 Mar 2026 09:00:00 GMT</pubDate>
+      <description>VAPI announced breaking changes to its v2 API including new authentication and payload schemas.</description>
+      <category>voice ai</category>
+    </item>
+    <item>
+      <title>ElevenLabs Conversational v3 ships with sub-200ms latency</title>
+      <link>https://voiceaiweekly.com/articles/elevenlabs-conversational-v3-ships-with-sub-200ms-latency</link>
+      <guid isPermaLink="true">https://voiceaiweekly.com/articles/elevenlabs-conversational-v3-ships-with-sub-200ms-latency</guid>
+      <pubDate>Fri, 20 Mar 2026 09:00:00 GMT</pubDate>
+      <description>ElevenLabs rolled out Conversational v3 with sub-200ms end-to-end latency for real-time voice agents.</description>
+      <category>voice ai</category>
+    </item>
+    <item>
+      <title>Anthropic Claude 4.7 ships with 1M context window</title>
+      <link>https://aidaily.io/articles/anthropic-claude-4-7-ships-with-1m-context-window</link>
+      <guid isPermaLink="true">https://aidaily.io/articles/anthropic-claude-4-7-ships-with-1m-context-window</guid>
+      <pubDate>Thu, 02 Apr 2026 09:00:00 GMT</pubDate>
+      <description>Anthropic released Claude 4.7 featuring a 1 million token context window, a significant jump for long-form analysis.</description>
+      <category>llm apis</category>
+    </item>
+    <item>
+      <title>Stable Diffusion 4 released under open-source license</title>
+      <link>https://imagegennews.io/articles/stable-diffusion-4-released-under-open-source-license</link>
+      <guid isPermaLink="true">https://imagegennews.io/articles/stable-diffusion-4-released-under-open-source-license</guid>
+      <pubDate>Wed, 18 Mar 2026 09:00:00 GMT</pubDate>
+      <description>Stable Diffusion 4 is now available under a permissive open-source license, marking a new milestone for the project.</description>
+      <category>image generation</category>
+    </item>
+    <item>
+      <title>OpenAI announces new GPT-5 pricing tiers</title>
+      <link>https://techpress.dev/articles/openai-announces-new-gpt-5-pricing-tiers</link>
+      <guid isPermaLink="true">https://techpress.dev/articles/openai-announces-new-gpt-5-pricing-tiers</guid>
+      <pubDate>Sat, 28 Mar 2026 09:00:00 GMT</pubDate>
+      <description>OpenAI revealed new pricing tiers for GPT-5 API usage targeted at scaling developers.</description>
+      <category>llm apis</category>
+    </item>
+    <item>
+      <title>LangGraph 2.0 adds stateful agent primitives</title>
+      <link>https://frameworkdigest.dev/articles/langgraph-2-0-adds-stateful-agent-primitives</link>
+      <guid isPermaLink="true">https://frameworkdigest.dev/articles/langgraph-2-0-adds-stateful-agent-primitives</guid>
+      <pubDate>Sun, 22 Mar 2026 09:00:00 GMT</pubDate>
+      <description>LangGraph 2.0 introduces stateful agent primitives aimed at long-running agent workflows.</description>
+      <category>agent frameworks</category>
+    </item>
+    <item>
+      <title>Third-party MCP servers cross 500 in public registry</title>
+      <link>https://aidaily.io/articles/third-party-mcp-servers-cross-500-in-public-registry</link>
+      <guid isPermaLink="true">https://aidaily.io/articles/third-party-mcp-servers-cross-500-in-public-registry</guid>
+      <pubDate>Sun, 05 Apr 2026 09:00:00 GMT</pubDate>
+      <description>The public MCP server registry now lists more than 500 third-party implementations, signaling broad ecosystem adoption.</description>
+      <category>mcp</category>
+    </item>
+    <item>
+      <title>Google Gemini 3 API moves to general availability</title>
+      <link>https://techpress.dev/articles/google-gemini-3-api-moves-to-general-availability</link>
+      <guid isPermaLink="true">https://techpress.dev/articles/google-gemini-3-api-moves-to-general-availability</guid>
+      <pubDate>Fri, 10 Apr 2026 09:00:00 GMT</pubDate>
+      <description>Google's Gemini 3 API has graduated to general availability with new enterprise-focused capabilities.</description>
+      <category>llm apis</category>
+    </item>
+  </channel>
+</rss>

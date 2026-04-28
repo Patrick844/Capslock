@@ -1,0 +1,173 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-04-16T00:00:00Z",
+  "articles": [
+    {
+      "article_id": "art_001",
+      "title": "VAPI v2 API launches with breaking changes",
+      "url": "https://techpress.dev/articles/vapi-v2-api-launches-with-breaking-changes",
+      "published_at": "2026-03-15T09:00:00Z",
+      "source": "techpress.dev",
+      "topics": ["voice ai", "vapi", "api"]
+    },
+    {
+      "article_id": "art_002",
+      "title": "ElevenLabs Conversational v3 ships with sub-200ms latency",
+      "url": "https://voiceaiweekly.com/articles/elevenlabs-conversational-v3-ships-with-sub-200ms-latency",
+      "published_at": "2026-03-20T09:00:00Z",
+      "source": "voiceaiweekly.com",
+      "topics": ["voice ai", "elevenlabs", "latency"]
+    },
+    {
+      "article_id": "art_003",
+      "title": "Deepgram adds real-time diarization",
+      "url": "https://voiceaiweekly.com/articles/deepgram-adds-real-time-diarization",
+      "published_at": "2026-02-10T09:00:00Z",
+      "source": "voiceaiweekly.com",
+      "topics": ["voice ai", "deepgram", "diarization"]
+    },
+    {
+      "article_id": "art_004",
+      "title": "OpenAI adjusts GPT-4 Turbo pricing",
+      "url": "https://mlnewsletter.com/articles/openai-adjusts-gpt-4-turbo-pricing",
+      "published_at": "2026-01-15T09:00:00Z",
+      "source": "mlnewsletter.com",
+      "topics": ["llm apis", "openai", "api"]
+    },
+    {
+      "article_id": "art_005",
+      "title": "Anthropic Claude 4.7 ships with 1M context window",
+      "url": "https://aidaily.io/articles/anthropic-claude-4-7-ships-with-1m-context-window",
+      "published_at": "2026-04-02T09:00:00Z",
+      "source": "aidaily.io",
+      "topics": ["llm apis", "anthropic", "api"]
+    },
+    {
+      "article_id": "art_006",
+      "title": "Google Gemini 3 API moves to general availability",
+      "url": "https://techpress.dev/articles/google-gemini-3-api-moves-to-general-availability",
+      "published_at": "2026-04-10T09:00:00Z",
+      "source": "techpress.dev",
+      "topics": ["llm apis", "google", "api"]
+    },
+    {
+      "article_id": "art_007",
+      "title": "Industry analysis: entity-resolution trends in 2026",
+      "url": "https://frameworkdigest.dev/articles/industry-analysis-entity-resolution-trends-in-2026",
+      "published_at": "2026-04-08T09:00:00Z",
+      "source": "frameworkdigest.dev",
+      "topics": ["agent frameworks", "entity resolution", "analysis"]
+    },
+    {
+      "article_id": "art_008",
+      "title": "Stable Diffusion 4 released under open-source license",
+      "url": "https://imagegennews.io/articles/stable-diffusion-4-released-under-open-source-license",
+      "published_at": "2026-03-18T09:00:00Z",
+      "source": "imagegennews.io",
+      "topics": ["image generation", "stable diffusion", "open source"]
+    },
+    {
+      "article_id": "art_009",
+      "title": "Midjourney v8 enters Discord beta",
+      "url": "https://imagegennews.io/articles/midjourney-v8-enters-discord-beta",
+      "published_at": "2026-04-12T09:00:00Z",
+      "source": "imagegennews.io",
+      "topics": ["image generation", "midjourney", "beta"]
+    },
+    {
+      "article_id": "art_010",
+      "title": "Adobe Firefly 4 launches across the Creative Cloud",
+      "url": "https://imagegennews.io/articles/adobe-firefly-4-launches-across-the-creative-cloud",
+      "published_at": "2026-04-01T09:00:00Z",
+      "source": "imagegennews.io",
+      "topics": ["image generation", "firefly", "adobe"]
+    },
+    {
+      "article_id": "art_011",
+      "title": "Early thoughts on Anthropic's MCP draft",
+      "url": "https://aidaily.io/articles/early-thoughts-on-anthropics-mcp-draft",
+      "published_at": "2026-02-20T09:00:00Z",
+      "source": "aidaily.io",
+      "topics": ["mcp", "model context protocol", "anthropic"]
+    },
+    {
+      "article_id": "art_012",
+      "title": "Third-party MCP servers cross 500 in public registry",
+      "url": "https://aidaily.io/articles/third-party-mcp-servers-cross-500-in-public-registry",
+      "published_at": "2026-04-05T09:00:00Z",
+      "source": "aidaily.io",
+      "topics": ["mcp", "model context protocol", "registry"]
+    },
+    {
+      "article_id": "art_013",
+      "title": "Voice agent framework comparison 2026",
+      "url": "https://voiceaiweekly.com/articles/voice-agent-framework-comparison-2026",
+      "published_at": "2026-04-05T09:00:00Z",
+      "source": "voiceaiweekly.com",
+      "topics": ["voice ai", "frameworks", "comparison"]
+    },
+    {
+      "article_id": "art_014",
+      "title": "OpenAI announces new GPT-5 pricing tiers",
+      "url": "https://techpress.dev/articles/openai-announces-new-gpt-5-pricing-tiers",
+      "published_at": "2026-03-28T09:00:00Z",
+      "source": "techpress.dev",
+      "topics": ["llm apis", "openai", "api"]
+    },
+    {
+      "article_id": "art_015",
+      "title": "GPT-5 API prices revised: what developers pay now",
+      "url": "https://aidaily.io/articles/gpt-5-api-prices-revised-what-developers-pay-now",
+      "published_at": "2026-03-29T09:00:00Z",
+      "source": "aidaily.io",
+      "topics": ["llm apis", "openai", "api"]
+    },
+    {
+      "article_id": "art_016",
+      "title": "Breaking: OpenAI raises GPT-5 pricing for developers",
+      "url": "https://mlnewsletter.com/articles/breaking-openai-raises-gpt-5-pricing-for-developers",
+      "published_at": "2026-03-30T09:00:00Z",
+      "source": "mlnewsletter.com",
+      "topics": ["llm apis", "openai", "api"]
+    },
+    {
+      "article_id": "art_017",
+      "title": "Google Gemini 3 reaches general availability",
+      "url": "https://mlnewsletter.com/articles/google-gemini-3-reaches-general-availability",
+      "published_at": "2026-04-07T09:00:00Z",
+      "source": "mlnewsletter.com",
+      "topics": ["llm apis", "google", "api"]
+    },
+    {
+      "article_id": "art_018",
+      "title": "LangGraph 2.0 adds stateful agent primitives",
+      "url": "https://frameworkdigest.dev/articles/langgraph-2-0-adds-stateful-agent-primitives",
+      "published_at": "2026-03-22T09:00:00Z",
+      "source": "frameworkdigest.dev",
+      "topics": ["agent frameworks", "langgraph", "release"]
+    },
+    {
+      "article_id": "art_019",
+      "title": "AutoGen 0.9 release notes",
+      "url": "https://frameworkdigest.dev/articles/autogen-0-9-release-notes",
+      "published_at": "2026-01-20T09:00:00Z",
+      "source": "frameworkdigest.dev",
+      "topics": ["agent frameworks", "autogen", "release"]
+    },
+    {
+      "article_id": "art_020",
+      "title": "PydanticAI framework debuts",
+      "url": "https://frameworkdigest.dev/articles/pydanticai-framework-debuts",
+      "published_at": "2026-04-03T09:00:00Z",
+      "source": "frameworkdigest.dev",
+      "topics": ["agent frameworks", "pydanticai", "release"]
+    }
+  ],
+  "topic_index": {
+    "voice ai": ["art_001", "art_002", "art_003", "art_013"],
+    "llm apis": ["art_004", "art_005", "art_006", "art_014", "art_015", "art_016", "art_017"],
+    "image generation": ["art_008", "art_009", "art_010"],
+    "mcp": ["art_011", "art_012"],
+    "agent frameworks": ["art_007", "art_018", "art_019", "art_020"]
+  }
+}
