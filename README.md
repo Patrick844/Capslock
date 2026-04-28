@@ -115,6 +115,3 @@ volumes:
 
 The API will be available at `http://localhost:8000`. Stop with `docker compose down`.
 
-## Notes from the Candidate
-
-_Fill this section in with any notable design decisions, trade-offs, or things you'd do differently with more time._
