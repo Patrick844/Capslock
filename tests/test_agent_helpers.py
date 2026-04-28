@@ -1,67 +1,27 @@
-from datetime import UTC, datetime
+"""Tests for pure helper functions in the agent: extract, build, merge, fetch+summarize."""
+
 from types import SimpleNamespace
 from typing import cast
 
 import pytest
 from openai.types.responses import Response
 
+from tests.conftest import make_article, make_digest_item, make_source, make_summary
 from tracker.agent import (
     _build_digest_item,
     _extract_tool_calls,
     _fetch_then_summarize,
     _merge_items_by_cluster,
 )
-from tracker.schemas import Article, DigestItem, Source, SummarizerResponse, TokenUsage
+from tracker.schemas import Article, SummarizerResponse, TokenUsage
+
+# ---------------------------------------------------------------------------
+# _extract_tool_calls
+# ---------------------------------------------------------------------------
 
 
-def make_source(article_id: str = "art_001") -> Source:
-    return Source(
-        article_id=article_id,
-        url=f"https://example.com/{article_id}",
-        title=f"Title {article_id}",
-        published_at=datetime(2026, 3, 1, tzinfo=UTC),
-    )
-
-
-def make_article(article_id: str = "art_001") -> Article:
-    return Article(
-        article_id=article_id,
-        url=f"https://example.com/{article_id}",
-        title=f"Title {article_id}",
-        published_at=datetime(2026, 3, 1, tzinfo=UTC),
-        body="This is the article body.",
-        tags=["api", "llm"],
-    )
-
-
-def make_summary() -> SummarizerResponse:
-    return SummarizerResponse(
-        summary="This article discusses LLM API pricing changes and their impact on developers.",
-        relevance="high",
-        reasoning="The article directly discusses the requested topic.",
-        token_usage=TokenUsage(
-            input_tokens=10,
-            output_tokens=5,
-            total_tokens=15,
-            estimated_cost_usd=0.00001,
-        ),
-    )
-
-
-def make_digest_item(article_id: str) -> DigestItem:
-    source = make_source(article_id)
-
-    return DigestItem(
-        title=f"Title {article_id}",
-        summary="Short summary.",
-        relevance="high",
-        published_at=datetime(2026, 3, 1, tzinfo=UTC),
-        sources=[source],
-        reasoning="Relevant to the topic.",
-    )
-
-
-def test_extract_tool_calls_filters_by_tool_name():
+def test_extract_tool_calls_filters_by_tool_name() -> None:
+    """Only function_call items with the matching name are returned."""
     response = cast(
         Response,
         SimpleNamespace(
@@ -79,16 +39,18 @@ def test_extract_tool_calls_filters_by_tool_name():
     assert calls[0].name == "search_news"
 
 
+# ---------------------------------------------------------------------------
+# _build_digest_item
+# ---------------------------------------------------------------------------
+
+
 def test_build_digest_item_returns_digest_item() -> None:
+    """Fields from Article, SummarizerResponse, and Source are assembled correctly."""
     source = make_source()
     article = make_article()
     summary = make_summary()
 
-    item = _build_digest_item(
-        article=article,
-        summary=summary,
-        source=source,
-    )
+    item = _build_digest_item(article=article, summary=summary, source=source)
 
     assert item is not None
     assert item.title == article.title
@@ -97,72 +59,81 @@ def test_build_digest_item_returns_digest_item() -> None:
     assert item.sources[0].article_id == article.article_id
 
 
+# ---------------------------------------------------------------------------
+# _merge_items_by_cluster
+# ---------------------------------------------------------------------------
+
+
 def test_merge_items_by_cluster_merges_sources() -> None:
+    """Articles in the same cluster are collapsed into one item with multiple sources."""
     item_1 = make_digest_item("art_001")
     item_2 = make_digest_item("art_002")
-    item_3 = make_digest_item("art_003")
+    item_3 = make_digest_item("art_003")  # not in any cluster
 
     merged = _merge_items_by_cluster(
         items=[item_1, item_2, item_3],
         clusters=[["art_001", "art_002"]],
     )
 
+    # art_001 + art_002 → 1 merged item; art_003 stays separate → 2 total
     assert len(merged) == 2
 
     merged_cluster_item = merged[0]
     merged_source_ids = {source.article_id for source in merged_cluster_item.sources}
-
     assert merged_source_ids == {"art_001", "art_002"}
 
 
+# ---------------------------------------------------------------------------
+# _fetch_then_summarize
+# ---------------------------------------------------------------------------
+
+
 @pytest.mark.asyncio
-async def test_fetch_then_summarize_returns_pair(monkeypatch) -> None:
+async def test_fetch_then_summarize_returns_pair(monkeypatch: pytest.MonkeyPatch) -> None:
+    """When both fetch and summarize succeed, the (article, summary) pair is returned."""
     article = make_article("art_001")
     summary = make_summary()
     source = make_source("art_001")
-    usage = []
+    usage: list[TokenUsage | None] = []
 
-    async def fake_fetch(article_id: str, usage):
+    async def fake_fetch(_article_id: str, _usage: list[TokenUsage | None]) -> Article:
         return article
 
-    async def fake_summarize(article: Article, topic: str, usage):
+    async def fake_summarize(
+        _article: Article, _topic: str, _usage: list[TokenUsage | None]
+    ) -> SummarizerResponse:
         return summary
 
     monkeypatch.setattr("tracker.agent._fetch", fake_fetch)
     monkeypatch.setattr("tracker.agent._summarize", fake_summarize)
 
-    result = await _fetch_then_summarize(
-        candidate=source,
-        topic="llm apis",
-        usage=usage,
-    )
+    result = await _fetch_then_summarize(candidate=source, topic="llm apis", usage=usage)
 
     assert result is not None
-
     result_article, result_summary = result
-
     assert result_article.article_id == "art_001"
     assert result_summary.summary == summary.summary
 
 
 @pytest.mark.asyncio
-async def test_fetch_then_summarize_returns_none_if_fetch_fails(monkeypatch) -> None:
+async def test_fetch_then_summarize_returns_none_if_fetch_fails(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """When fetch returns None, summarize is never called and None is returned."""
     source = make_source("art_001")
-    usage = []
+    usage: list[TokenUsage | None] = []
 
-    async def fake_fetch(article_id: str, usage):
+    async def fake_fetch(_article_id: str, _usage: list[TokenUsage | None]) -> None:
         return None
 
-    async def fake_summarize(article: Article, topic: str, usage):
+    async def fake_summarize(
+        _article: Article, _topic: str, _usage: list[TokenUsage | None]
+    ) -> SummarizerResponse:
         raise AssertionError("summarize should not be called if fetch fails")
 
     monkeypatch.setattr("tracker.agent._fetch", fake_fetch)
     monkeypatch.setattr("tracker.agent._summarize", fake_summarize)
 
-    result = await _fetch_then_summarize(
-        candidate=source,
-        topic="llm apis",
-        usage=usage,
-    )
+    result = await _fetch_then_summarize(candidate=source, topic="llm apis", usage=usage)
 
     assert result is None

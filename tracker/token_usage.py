@@ -1,8 +1,7 @@
 from typing import Any
 
+from tracker.config import settings
 from tracker.schemas import TokenUsage
-
-TokenLedger = list[TokenUsage | None]
 
 _PRICING_PER_1M_TOKENS: dict[str, tuple[float, float]] = {
     # model: (input_usd_per_1m, output_usd_per_1m)
@@ -32,11 +31,11 @@ def get_token_usage(response: Any) -> TokenUsage:
 
 
 def get_total_token_usage(responses: list[Any]) -> TokenUsage:
-    usages = [get_token_usage(response) for response in responses]
-    return sum_token_usages(TokenLedger(usages))
+    usages: list[TokenUsage | None] = [get_token_usage(r) for r in responses]
+    return sum_token_usages(usages)
 
 
-def sum_token_usages(usages: TokenLedger) -> TokenUsage:
+def sum_token_usages(usages: list[TokenUsage | None]) -> TokenUsage:
     total = TokenUsage()
 
     for usage in usages:
@@ -54,15 +53,12 @@ def sum_token_usages(usages: TokenLedger) -> TokenUsage:
 
 
 def _estimate_cost_usd(input_tokens: int, output_tokens: int) -> float:
-    from tracker.config import settings
-
     pricing = _PRICING_PER_1M_TOKENS.get(settings.LLM_MODEL)
 
     if pricing is None:
         return 0.0
 
     input_price_per_1m, output_price_per_1m = pricing
-
     input_cost = input_tokens * input_price_per_1m / 1_000_000
     output_cost = output_tokens * output_price_per_1m / 1_000_000
 
@@ -70,27 +66,13 @@ def _estimate_cost_usd(input_tokens: int, output_tokens: int) -> float:
 
 
 def print_token_usage(response: Any) -> None:
-    usage = get_token_usage(response)
-
     print("\n--- Token Usage ---")
-
-    if usage is None:
-        print("No token usage available.")
-        return
-
-    _print_usage(usage)
+    _print_usage(get_token_usage(response))
 
 
 def print_total_token_usage(responses: list[Any]) -> None:
-    usage = get_total_token_usage(responses)
-
     print("\n--- Total Token Usage ---")
-
-    if usage is None:
-        print("No token usage available.")
-        return
-
-    _print_usage(usage)
+    _print_usage(get_total_token_usage(responses))
 
 
 def _print_usage(usage: TokenUsage) -> None:

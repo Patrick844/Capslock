@@ -8,7 +8,7 @@ import pytest
 from bs4 import BeautifulSoup
 
 import tracker.tools as tools
-from tracker.schemas import ArticleTitle, Index, IndexArticles, Source
+from tracker.schemas import ArticleTitle, IndexArticle, SearchIndex, Source
 
 
 def make_source(
@@ -27,8 +27,8 @@ def make_index_article(
     article_id: str,
     topic: str = "llm apis",
     published_at: datetime | None = None,
-) -> IndexArticles:
-    return IndexArticles(
+) -> IndexArticle:
+    return IndexArticle(
         article_id=article_id,
         title=f"Title {article_id}",
         url=f"https://example.com/{article_id}",
@@ -38,8 +38,8 @@ def make_index_article(
     )
 
 
-def make_index() -> Index:
-    return Index(
+def make_index() -> SearchIndex:
+    return SearchIndex(
         version="1.0",
         generated_at="2026-04-16T00:00:00Z",
         articles=[

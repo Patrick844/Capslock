@@ -15,7 +15,9 @@ SEARCH_NEWS_TOOL = {
             },
             "since": {
                 "type": "string",
-                "description": "Only return articles published on or after this date. Format: YYYY-MM-DD.",
+                "description": (
+                    "Only return articles published on or after this date. Format: YYYY-MM-DD."
+                ),
             },
             "limit": {
                 "type": "integer",
@@ -53,10 +55,11 @@ SUMMARIZE_ARTICLE_TOOL = {
     "type": "function",
     "name": "summarize_article",
     "description": (
-        "Summarize article content for a given topic. "
-        "Always summarize content based on topic"
-        "The tool receives the article content and the topic, then returns a concise summary "
-        "focused on the parts of the content that are relevant to that topic."
+        "REQUIRED: call this tool every time you receive an article body to summarize. "
+        "Pass the full article content and the topic being tracked. "
+        "Returns a relevance label (high/medium/low) and a concise summary focused on "
+        "the parts of the content relevant to that topic. "
+        "Never skip this step — every fetched article must be summarized."
     ),
     "parameters": {
         "type": "object",

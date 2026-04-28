@@ -1,0 +1,4 @@
+{
+  "include": ["tracker", "tests"],
+  "pythonVersion": "3.11"
+}

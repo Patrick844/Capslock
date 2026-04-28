@@ -6,6 +6,13 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 
+class TokenUsage(BaseModel):
+    input_tokens: int = 0
+    output_tokens: int = 0
+    total_tokens: int = 0
+    estimated_cost_usd: float = 0.0
+
+
 class Source(BaseModel):
     article_id: str = Field(..., description="Fixture article identifier, e.g., 'art_001'")
     url: str
@@ -18,16 +25,16 @@ class Article(Source):
     tags: list[str] = Field(default_factory=list)
 
 
-class Index(BaseModel):
-    version: str
-    generated_at: str
-    articles: list[IndexArticles]
-    topic_index: dict[str, list[str]]
-
-
-class IndexArticles(Source):
+class IndexArticle(Source):
     topics: list[str]
     source: str
+
+
+class SearchIndex(BaseModel):
+    version: str
+    generated_at: str
+    articles: list[IndexArticle]
+    topic_index: dict[str, list[str]]
 
 
 class DigestItem(BaseModel):
@@ -53,7 +60,7 @@ class DigestResponse(BaseModel):
     token_usage: TokenUsage
 
 
-class SearchNews(BaseModel):
+class SearchNewsParam(BaseModel):
     query: str
     since: date
     limit: int
@@ -61,11 +68,6 @@ class SearchNews(BaseModel):
 
 class FetchArticleParam(BaseModel):
     article_id: str
-
-
-class SummarizerParam(BaseModel):
-    content: str
-    topic: str
 
 
 class SummarizerResponse(BaseModel):
@@ -96,14 +98,9 @@ class ClusterArticlesResponse(BaseModel):
     token_usage: TokenUsage
 
 
-class TokenUsage(BaseModel):
-    input_tokens: int = 0
-    output_tokens: int = 0
-    total_tokens: int = 0
-    estimated_cost_usd: float = 0.0
+# Structured output schemas for LLM responses (not exposed to the agent as tools).
 
 
-# Structured Output LLM
 class ArticleClassification(BaseModel):
     relevance: Literal["high", "medium", "low"] = Field(
         ...,

@@ -19,13 +19,13 @@ Copy `.env.example` to `.env` and fill in your LLM provider key.
 
 ## Run
 
-CLI:
+**CLI:**
 
 ```bash
 python -m tracker --topic "Voice AI" --since 2026-03-01
 ```
 
-API:
+**API:**
 
 ```bash
 uvicorn tracker.api:app --reload
@@ -40,6 +40,43 @@ curl -X POST http://localhost:8000/digest \
 python evals/run.py
 ```
 
+Prints a pass/fail report across the gold cases in `evals/gold.json`.
+
+## Tests
+
+This project uses `pytest` for testing and `pytest-cov` for coverage reports.
+
+```bash
+# install dev dependencies
+uv add --dev pytest pytest-cov pytest-asyncio
+
+# run tests
+uv run pytest
+
+# run with coverage
+uv run pytest --cov=tracker --cov-report=term-missing
+
+# generate HTML coverage report
+uv run pytest --cov=tracker --cov-report=term-missing --cov-report=html
+open htmlcov/index.html
+```
+
+Tests do **not** call the real OpenAI API. LLM responses are mocked to keep tests fast, deterministic, and safe to run in CI.
+
+**What is tested:**
+
+- Local fixture search logic (topic filtering, date filtering, limit clamping)
+- Article HTML parsing and metadata extraction
+- Token usage aggregation
+- Agent helper functions (`_extract_tool_calls`, `_build_digest_item`, `_merge_items_by_cluster`)
+- Async summarization and clustering via mocked LLM responses
+
+## Type Checking
+
+```bash
+uv run pyright
+```
+
 ## Docker
 
 The project includes a `Dockerfile` for running the API inside a lightweight Python container.
@@ -49,114 +86,34 @@ The Docker image:
 - Uses `python:3.11-slim`
 - Sets `/app` as the working directory
 - Installs the project from `pyproject.toml`
-- Copies the `tracker` source code into the image
-- Copies the `fixtures` folder used by `search_news` and `fetch_article`
-- Exposes port `8000`
-- Starts the FastAPI API with Uvicorn
-
-The container runs:
+- Copies the `tracker` source and `fixtures` folder into the image
+- Exposes port `8000` and starts the API with Uvicorn
 
 ```bash
-uvicorn tracker.api:app --host 0.0.0.0 --port 8000
+docker build -t capslock-tracker .
+docker run -e OPENAI_API_KEY=sk-... -p 8000:8000 capslock-tracker
 ```
-
-`0.0.0.0` is used so the API is reachable from the host machine.
 
 ## Docker Compose
 
-The project also includes a `docker-compose.yml` file to make running the API easier.
+```bash
+docker compose up --build
+```
 
 Docker Compose:
 
 - Builds the API image from the local `Dockerfile`
 - Runs the container as `capslock-tracker-api`
 - Maps local port `8000` to container port `8000`
-- Passes environment variables such as `OPENAI_API_KEY`, `LLM_MODEL`, and `LLM_PROVIDER`
-- Mounts the local `fixtures` folder into the container as read-only
-
-The fixtures mount is useful during development:
+- Passes `OPENAI_API_KEY`, `LLM_MODEL`, and `LLM_PROVIDER` as environment variables
+- Mounts the local `fixtures` folder as read-only so fixtures can be updated without rebuilding:
 
 ```yaml
 volumes:
   - ./fixtures:/app/fixtures:ro
 ```
 
-This means fixture files can be updated locally without rebuilding the Docker image.
-
-### Run with Docker Compose
-
-```bash
-docker compose up --build
-```
-
-The API will be available at:
-
-```text
-http://localhost:8000
-```
-
-### Stop the container
-
-```bash
-docker compose down
-```
-
-## Tests
-
-This project uses `pytest` for testing and `pytest-cov` for coverage reports.
-
-### Install test dependencies
-
-```bash
-uv add --dev pytest pytest-cov pytest-asyncio
-```
-
-### Run tests
-
-```bash
-uv run pytest
-```
-
-### Run tests with coverage
-
-```bash
-uv run pytest --cov=tracker --cov-report=term-missing
-```
-
-### Generate an HTML coverage report
-
-```bash
-uv run pytest --cov=tracker --cov-report=term-missing --cov-report=html
-```
-
-Then open the report:
-
-```bash
-open htmlcov/index.html
-```
-
-### What is tested
-
-The test suite covers:
-
-- Local fixture search logic
-- Article HTML parsing
-- Metadata extraction
-- Token usage aggregation
-- Agent helper functions
-- Async summarization and clustering logic using mocked LLM responses
-
-Tests do **not** call the real OpenAI API. LLM responses are mocked to keep tests fast, deterministic, and safe to run locally or in CI.
-
-### Type checking
-
-Run Pyright with:
-
-```bash
-uv run pyright
-```
-
-Prints a pass/fail summary across the gold cases in `evals/gold.json`.
+The API will be available at `http://localhost:8000`. Stop with `docker compose down`.
 
 ## Notes from the Candidate
 
